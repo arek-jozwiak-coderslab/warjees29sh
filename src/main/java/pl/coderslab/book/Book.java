@@ -1,5 +1,7 @@
 package pl.coderslab.book;
 
+import pl.coderslab.person.Person;
+
 import javax.persistence.*;
 import java.util.List;
 

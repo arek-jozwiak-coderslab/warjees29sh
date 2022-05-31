@@ -3,6 +3,7 @@ package pl.coderslab.book;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import pl.coderslab.person.Person;
 
 import java.util.List;
 import java.util.stream.Collectors;
