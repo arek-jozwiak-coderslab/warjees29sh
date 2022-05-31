@@ -29,6 +29,12 @@ public class BookFormController {
     @PostMapping("/add")
     public String save(Book book) {
         bookDao.save(book);
-        return "result";
+        return "redirect:/book-form/list";
     }
+    @GetMapping("/list")
+    public String list(Model model) {
+        model.addAttribute("books", bookDao.getList());
+        return "book/list";
+    }
+
 }
