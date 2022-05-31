@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/book")
@@ -64,9 +65,9 @@ public class BookController {
     @RequestMapping("/list")
     public String getList() {
         List<Book> list = bookDao.getList();
-        list.stream()
+        return list.stream()
                 .map(b -> b.getTitle())
-                .forEach(s -> System.out.println(s));
-        return "aaaa";
+                .peek(s -> System.out.println(s))
+                .collect(Collectors.joining(" ---- "));
     }
 }
