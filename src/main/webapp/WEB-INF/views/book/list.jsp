@@ -19,6 +19,7 @@
         <th>title</th>
         <th>description</th>
         <th>publisher</th>
+        <th>akcje</th>
     </tr>
 <a href="<c:url value="/book-form/add"/>">dodaj książkę</a>
     </thead>
@@ -29,6 +30,9 @@
             <td>${book.title}</td>
             <td>${book.description}</td>
             <td>${book.publisher.name}</td>
+            <td>
+                <a href="<c:url value="/book-form/delete/${book.id}"/>">usuń książkę</a>
+            </td>
         </tr>
     </c:forEach>
     </tbody>
