@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Repository
 @Transactional
@@ -28,4 +29,9 @@ public class BookDao {
     public void delete(Book book) {
         entityManager.remove(entityManager.contains(book) ? book : entityManager.merge(book));
     }
+
+    public List<Book> getList(){
+        return entityManager.createQuery("select b from Book b").getResultList();
+    }
+
 }
