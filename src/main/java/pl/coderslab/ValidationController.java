@@ -1,10 +1,11 @@
-package pl.coderslab.book;
+package pl.coderslab;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import pl.coderslab.book.Book;
 import pl.coderslab.student.Student;
 
 import javax.validation.ConstraintViolation;

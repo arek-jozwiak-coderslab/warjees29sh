@@ -1,4 +1,4 @@
-package pl.coderslab.book;
+package pl.coderslab.person;
 
 import pl.coderslab.person.Person;
 

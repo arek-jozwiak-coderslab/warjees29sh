@@ -1,5 +1,6 @@
 package pl.coderslab.book;
 
+import org.hibernate.annotations.ManyToAny;
 import pl.coderslab.person.Person;
 
 import javax.persistence.*;
@@ -30,6 +31,16 @@ public class Book {
     private Publisher publisher;
     @ManyToMany
     private List<Author> authors;
+    @ManyToOne
+    private Category category;
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
 
     public int getPages() {
         return pages;
