@@ -23,6 +23,7 @@ public class Book {
     @Min(1)
     @Max(10)
     private int rating;
+    @Min(1)
     private int pages;
     @ManyToOne
     @NotNull

@@ -2,6 +2,7 @@ package pl.coderslab.book;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import pl.coderslab.student.Student;
@@ -21,23 +22,13 @@ public class ValidationController {
     }
 
     @RequestMapping("/validate")
-    @ResponseBody
-    public String testValidate() {
+    public String testValidate(Model model) {
        Book book = new Book();
 
         Set<ConstraintViolation<Book>> constraintViolations = validator.validate(book);
+        model.addAttribute("constraintViolations", constraintViolations);
 
-        if (constraintViolations.isEmpty()) {
-
-        } else {
-            for (ConstraintViolation<Book> constraintViolation : constraintViolations) {
-                log.debug("path {}", constraintViolation.getPropertyPath());
-                log.debug("getMessage {}", constraintViolation.getMessage());
-            }
-
-        }
-
-        return "ok";
+        return "validate";
     }
 
 }
