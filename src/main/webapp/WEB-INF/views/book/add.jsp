@@ -13,12 +13,25 @@
 </head>
 <body>
 <form:form method="post" modelAttribute="book">
+
     <form:hidden path="id"/>
-    <form:input path="title"/>
-    <form:input path="description"/>
+    pages
+    <form:input path="pages"/> <br/>
+    <form:errors path="pages"/><br/>
+    title
+    <form:input path="title"/> <br/>
+    <form:errors path="title"/><br/>
+    description
+    <form:input path="description"/><br/>
+    <form:errors path="description"/><br/>
+    rating
+    <form:input path="rating"/> <br/>
+    <form:errors path="rating"/><br/>
 
     <form:select path="publisher" items="${publishers}" itemLabel="name" itemValue="id"/>
-    <input type="submit" value="Save">
+    <br/><br/>
+    <input type="submit" value="Save"> <br/>
+    <form:errors path="*"/>
 </form:form>
 </body>
 </html>

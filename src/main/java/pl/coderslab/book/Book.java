@@ -18,7 +18,7 @@ public class Book {
     @Size(min = 5)
     private String title;
 
-    @Max(600)
+    @Size(max = 20)
     private String description;
     @Min(1)
     @Max(10)
