@@ -2,9 +2,10 @@ package pl.coderslab.student;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 public class Student {
-    @Min(2)
+    @Size(min = 2, max = 30)
     @NotBlank
     private String firstName;
     private String lastName;
