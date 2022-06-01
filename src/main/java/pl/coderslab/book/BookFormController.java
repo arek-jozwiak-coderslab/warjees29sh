@@ -1,25 +1,27 @@
 package pl.coderslab.book;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.stream.Collectors;
 
+@Slf4j
 @Controller
 @RequestMapping("/book-form")
 public class BookFormController {
 
     private final BookDao bookDao;
     private final PublisherDao publisherDao;
+    private final BookRepository bookRepository;
 
-    public BookFormController(BookDao bookDao, PublisherDao publisherDao) {
+    public BookFormController(BookDao bookDao, PublisherDao publisherDao, BookRepository bookRepository) {
         this.bookDao = bookDao;
         this.publisherDao = publisherDao;
+        this.bookRepository = bookRepository;
     }
 
     @GetMapping("/add")
@@ -31,11 +33,13 @@ public class BookFormController {
     }
 
     @PostMapping("/add")
-    public String save(@Valid Book book, BindingResult result) {
-        if(result.hasErrors()){
+    public String save(@Valid Book book, BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            model.addAttribute("publishers", publisherDao.findAll());
             return "book/add";
         }
-        bookDao.save(book);
+        bookRepository.save(book);
+
         return "redirect:/book-form/list";
     }
 
@@ -47,8 +51,19 @@ public class BookFormController {
 
     @GetMapping("/delete/{id}")
     public String delete(@PathVariable long id) {
-        bookDao.delete(bookDao.findById(id));
+        bookRepository.deleteById(id);
         return "redirect:/book-form/list";
+    }
+
+    @GetMapping("/test")
+    @ResponseBody
+    public String test(Model model) {
+        bookRepository.findByTitle("dsa as da s")
+                .stream()
+                .map(b->b.getId())
+                .collect(Collectors.toList())
+                .forEach(id->log.debug("id : {}", id));
+        return "test";
     }
 
 }
