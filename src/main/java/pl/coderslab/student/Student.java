@@ -1,6 +1,11 @@
 package pl.coderslab.student;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+
 public class Student {
+    @Min(2)
+    @NotBlank
     private String firstName;
     private String lastName;
 
