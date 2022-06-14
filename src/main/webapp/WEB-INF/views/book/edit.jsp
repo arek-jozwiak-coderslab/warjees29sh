@@ -13,7 +13,7 @@
     <title>Title</title>
 </head>
 <body>
-<form:form method="post" modelAttribute="book">
+<form:form method="post" action="/book-form/edit" modelAttribute="book">
 
     <form:hidden path="id"/>
     pages

@@ -30,7 +30,7 @@ public interface BookRepository extends JpaRepository<Book, Long> {
 
     List<Book> findByAuthorsIn(List<Author> authors);
 
-    List<Book> findByPublish(Publisher publisher);
+    List<Book> findByPublisher(Publisher publisher);
 
 
 }

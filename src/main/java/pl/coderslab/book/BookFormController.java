@@ -24,6 +24,25 @@ public class BookFormController {
         this.bookRepository = bookRepository;
     }
 
+    @GetMapping("/edit/{id}")
+    public String edit(Model model, @PathVariable long id) {
+
+        model.addAttribute("publishers", publisherDao.findAll());
+        model.addAttribute("book", bookRepository.findById(id).get());
+        return "book/edit";
+    }
+
+    @PostMapping("/edit")
+    public String update(@Valid Book book, BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            model.addAttribute("publishers", publisherDao.findAll());
+            return "book/edit";
+        }
+        bookRepository.save(book);
+
+        return "redirect:/book-form/list";
+    }
+
     @GetMapping("/add")
     public String add(Model model) {
         Book book = new Book();

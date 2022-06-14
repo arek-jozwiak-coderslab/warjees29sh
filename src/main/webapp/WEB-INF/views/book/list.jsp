@@ -32,6 +32,7 @@
             <td>${book.publisher.name}</td>
             <td>
                 <a href="<c:url value="/book-form/delete/${book.id}"/>">usuń książkę</a>
+                <a href="<c:url value="/book-form/edit/${book.id}"/>">edytuj książkę</a>
             </td>
         </tr>
     </c:forEach>
